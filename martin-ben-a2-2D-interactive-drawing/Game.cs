@@ -18,7 +18,8 @@ namespace Game10003
         /// </summary>
         public void Setup()
         {
-
+            Window.SetSize(400, 400);
+            Window.SetTitle("Interactive Drawing");
         }
 
         /// <summary>
