@@ -13,12 +13,14 @@ namespace Game10003
         // Place your variables here:
 
         // Colours
-        Color navyBlue = new Color(0, 2, 58); 
+        Color navyBlue = new Color(0, 2, 58);
         Color brickRed = new Color(130, 23, 0);
         Color concreateGrey = new Color(142, 144, 118);
-        Color darkGreenBack = new Color(38, 115, 50); 
-        Color darkGreenFront = new Color(45, 124, 64); 
-        
+        Color darkGreenBack = new Color(38, 115, 50);
+        Color darkGreenFront = new Color(45, 124, 64);
+        int moonLocation = Random.Integer(40, 340);
+        int moonPhase = Random.Integer(0, 30);
+
 
         /// <summary>
         ///     Setup runs once before the game loop begins.
@@ -27,6 +29,7 @@ namespace Game10003
         {
             Window.SetSize(400, 400);
             Window.SetTitle("Interactive Drawing");
+            
         }
 
         /// <summary>
@@ -35,16 +38,23 @@ namespace Game10003
         public void Update()
         {
 
+            // -------- Background --------
+
             // Background Buildings
             Draw.FillColor = Color.Black;
-            Draw.Rectangle(0, 260, 20, 140); 
-            Draw.Rectangle(20, 180, 20, 220); 
-            Draw.Rectangle(360, 260, 20, 140); 
+            Draw.Rectangle(0, 260, 20, 140);
+            Draw.Rectangle(20, 180, 20, 220);
+            Draw.Rectangle(360, 260, 20, 140);
             Draw.Rectangle(380, 240, 20, 160);
 
             // Background Bushes
             DrawBush(0, 390, 25);
             DrawBush(360, 390, 25);
+
+            // Background Moon
+            DrawMoon();
+
+            // -------- Building --------
 
             // Main Building 
             Draw.FillColor = brickRed;
@@ -73,7 +83,7 @@ namespace Game10003
             }
 
 
-                Window.ClearBackground(navyBlue);
+            Window.ClearBackground(navyBlue);
         }
 
         void DrawBush(float x, float y, float radius)
@@ -84,6 +94,16 @@ namespace Game10003
             Draw.FillColor = darkGreenFront;
             Draw.Circle(x, y, radius);
             Draw.Circle(x + 40, y, radius);
+
+        }
+
+        void DrawMoon()
+        {
+            Draw.FillColor = Color.White;
+            Draw.Circle(moonLocation, 30, 30);
+            Draw.FillColor = navyBlue;
+            Draw.Circle(moonLocation - moonPhase, 30, 30);
+            
 
         }
     }
