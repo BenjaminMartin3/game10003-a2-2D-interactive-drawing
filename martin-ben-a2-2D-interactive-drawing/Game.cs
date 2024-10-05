@@ -29,7 +29,7 @@ namespace Game10003
         float[] xWindowCoord = [60, 160, 260];
         float[] yWindowCoord = [120, 220, 320];
 
-        //
+        // Array for Star Coordinates
         float[] xStarCoordinates = []; 
         float[] yStarCoordinates = []; 
 
