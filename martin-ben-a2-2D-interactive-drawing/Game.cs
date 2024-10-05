@@ -29,6 +29,10 @@ namespace Game10003
         float[] xWindowCoord = [60, 160, 260];
         float[] yWindowCoord = [120, 220, 320];
 
+        //
+        float[] xStarCoordinates = []; 
+        float[] yStarCoordinates = []; 
+
         /// <summary>
         ///     Setup runs once before the game loop begins.
         /// </summary>
@@ -36,6 +40,16 @@ namespace Game10003
         {
             Window.SetSize(400, 400);
             Window.SetTitle("Interactive Drawing");
+
+            int starCount = Random.Integer(25, 75);
+            xStarCoordinates = new float[starCount];
+            yStarCoordinates = new float[starCount];
+            for (int i = 0; i < starCount; i++) 
+            {
+                xStarCoordinates[i] = Random.Integer(10, 390);
+                yStarCoordinates[i] = Random.Integer(10, 260);
+            }
+
         }
 
         /// <summary>
@@ -52,6 +66,14 @@ namespace Game10003
             // Set Background Colour 
             Window.ClearBackground(navyBlue);
 
+            // Background Stars
+            Draw.FillColor = Color.White;
+            Draw.LineSize = 0; 
+            for (int i = 0; i < xStarCoordinates.Length; i++)
+            {
+                Draw.Circle(xStarCoordinates[i], yStarCoordinates[i], 2); 
+            }
+
             // Background Buildings
             Draw.FillColor = Color.Black;
             Draw.Rectangle(0, 260, 20, 140);
@@ -59,9 +81,9 @@ namespace Game10003
             Draw.Rectangle(360, 260, 20, 140);
             Draw.Rectangle(380, 240, 20, 160);
 
-            // Background Bushes
-            DrawBush(0, 390, 25);
-            DrawBush(360, 390, 25);
+            // Background Treetops
+            DrawTreetop(0, 390, 25);
+            DrawTreetop(360, 390, 25);
 
             // Background Moon
             DrawMoon();
@@ -182,7 +204,7 @@ namespace Game10003
             }
         }
 
-        void DrawBush(float x, float y, float radius)
+        void DrawTreetop(float x, float y, float radius)
         {
             Draw.LineSize = 0;
             Draw.FillColor = darkGreenBack;
